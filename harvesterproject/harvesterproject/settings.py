@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'harvesterapp',
+    'harvesterapp'
 ]
 
 MIDDLEWARE = [
@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'harvesterproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'harvester',
-        'USER': 'admin',
-        'PASSWORD': '203R5A0303',
-        'HOST': 'harvester.c3o8cuqswpqb.eu-north-1.rds.amazonaws.com',
-        'PORT': 3306
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
