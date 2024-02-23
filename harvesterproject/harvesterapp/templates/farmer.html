@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add timings</title>
+    <style>
+      * {
+        list-style: none;
+        text-decoration: none;
+        transition: 0.2s linear;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background-color: rgb(241, 241, 241);
+      }
+      .add {
+        margin-top: 20px;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background-color: lightblue;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 10px rgb(173, 172, 172);
+      }
+      form {
+        width: 70%;
+      }
+      select {
+        display: block;
+        width: 100%;
+        padding: 5px;
+        text-transform: capitalize;
+      }
+      input {
+        display: block;
+        width: 100%;
+        padding: 5px;
+      }
+      button {
+        margin-top: 10px;
+        background-color: navy;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+      }
+      .home {
+        background-color: orange;
+        padding: 8px;
+        color: #fff;
+        margin-top: 10px;
+      }
+      .logout {
+        background-color: rgb(243, 106, 106);
+        padding: 8px;
+        color: #fff;
+        margin-top: 5px;
+        border-radius: 5px;
+      }
+      .logout a{
+        color: #fff;
+        font-weight: 600;
+        
+      }
+      h3{
+        color: navy;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="add">
+      <div class="head">
+        <h3>Enter Details To Add Timings</h3>
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <label for="owner_name">Owner name: </label>
+        <select name="owner_name" id="owner_name">
+          <option value="select">select</option>
+          <option value="kistanna">kistanna</option>
+          <option value="ravi">ravi</option>
+          <option value="guru">guru</option>
+        </select>
+        <label for="date">Date: </label>
+        <input type="date" name="date" id="date" required />
+        <label for="farmer_name">Farmer name: </label>
+        <input
+          type="text"
+          id="farmer_name"
+          name="farmer_name"
+          placeholder="Farmer name"
+          required
+        />
+        <label for="time">Time: </label>
+        <input type="text" id="time" name="time" placeholder="Time" required />
+        <label for="rate">Rate: </label>
+        <select name="rate" id="rate">
+          <option value="select">select</option>
+          <option value="2500">2500</option>
+        </select>
+        <label for="mobile_number">Mobile number: </label>
+        <input
+          type="number"
+          name="mobile_number"
+          placeholder="Mobile number"
+          id="mobile_number"
+          required
+        />
+
+        <button type="submit">Submit</button>
+      </form>
+      {% for message in messages %}
+      <p class="message">{{ message }}</p>
+
+      {% endfor %}
+      <p class="logout"><a href="{% url 'logout' %}">Logout</a></p>
+
+      <a class="home" href="{% url 'home' %}">Back to Home</a>
+    </div>
+  </body>
+</html>

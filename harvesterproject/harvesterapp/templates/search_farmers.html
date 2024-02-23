@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <style>
+      * {
+        list-style: none;
+        text-decoration: none;
+        transition: 0.2s linear;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      form {
+        width: 100%;
+        background-color: lightblue;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      input {
+        padding: 5px;
+        margin-right: 5px;
+      }
+      button {
+        color: white;
+        background-color: navy;
+        border: 0;
+        border-radius: 5px;
+      }
+      h3 {
+        color: navy;
+      }
+      h3 span {
+        color: brown;
+        text-transform: capitalize;
+      }
+
+      ul li {
+        width: 200px;
+        background-color: lightgreen;
+        padding: 10px;
+        text-transform: capitalize;
+        border: 5px solid white;
+      }
+      ul li a {
+        color: brown;
+        font-weight: 600;
+      }
+      .home {
+        background-color: orange;
+        padding: 10px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="{% url 'search_farmers' %}">
+      {% csrf_token %}
+      <input type="text" name="search" placeholder="Search by farmer name" />
+      <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+    <h3>Search Results for <span>"{{ search_query }}"</span></h3>
+    <ul>
+      {% for farmer in results %}
+      <li>
+        <a href="{% url 'farmer_details' farmer.farmer_name %}"
+          >{{ farmer.farmer_name }}</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+
+    <a class="home" href="{% url 'home' %}">Back to Home</a>
+  </body>
+</html>

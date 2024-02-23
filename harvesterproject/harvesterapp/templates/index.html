@@ -1,40 +1,109 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="main">
-        <form method="post">
-            {% csrf_token %}
-            <label for="owner_name">Ownername: </label>
-            <select name="owner_name" id="owner_name" required="" >
-                <option value="select">select</option>
-                <option value="kistanna">kistanna</option>
-            </select>
-            <label for="date">Date: </label>
-            <input type="date" name="date" id="date" required="">
-            <label for="farmer_name">Farmer name: </label>
-            <input type="text" name="farmer_name" id="farmer_name" required="">
-            <label for="time">Time: </label>
-            <input type="text" name="time" id="time" required="">
-            <label for="rate">Rate: </label>
-            <select name="rate" id="rate">
-                <option value="select">select</option>
-                <option value="2500">2500</option>
-            </select>
-            <label for="mobile_number">Mobile number</label>
-            <input type="number" name="mobile_number" id="mobile_number">
-            <button type="submit">Submit</button>
-        </form>
-
-       
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      * {
+        list-style: none;
+        text-decoration: none;
+        transition: 0.2s linear;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      .nav {
+        margin-top: 0;
+        padding: 10px;
+        background-color: navy;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      .nav ul {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .nav ul li {
+        padding: 5px;
+      }
+      .nav ul li a {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .nav ul li:hover {
+        background-color: white;
+        border-radius: 5px;
+      }
+      .nav ul li a:hover {
+        color: navy;
+      }
+      .owners {
+        margin-top: 100px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      table {
+        border-collapse: collapse;
+        width: 60%;
+      }
+      table tr {
+        border: 4px solid #fff;
+      }
+      tr:nth-child(even) {
+        background-color: rgb(191, 230, 244);
+      }
+      tr:nth-child(odd) {
+        background-color: lightcyan;
+      }
+      table tr th {
+        color: rgb(62, 6, 114);
+        padding: 10px;
+        font-weight: bolder;
+        font-size: 25px;
+      }
+      table tr td {
+        padding: 10px;
+        font-size: 18px;
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+      table tr td a {
+        color: maroon;
+      }
+      table tr td:hover{
+        transform: translateX(5px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <ul>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'search_farmers' %}">Search</a></li>
+      </ul>
     </div>
-    {% for message in messages %}
-    <p class="message">{{ message }}</p>
-    {% endfor %}
-</body>
+    <div class="owners">
+      <table>
+        <tr>
+          <th>Owners</th>
+        </tr>
+        {% for owner in owners %}
+        <tr>
+          <td>
+            <a href="{% url 'owner_details' owner.owner_name %}"
+              >{{ owner.owner_name }}</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
 </html>

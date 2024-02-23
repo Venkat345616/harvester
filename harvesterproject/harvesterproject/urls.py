@@ -20,5 +20,13 @@ from harvesterapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",views.home,name='home')
+    path('',views.home,name="home"),
+    path('farmer',views.farmer,name="farmer"),
+    path('login',views.login, name="login"),
+    path('logout/', views.user_logout, name='logout'),
+    path('owner_details/<str:owner_name>/', views.owner_details, name='owner_details'),
+    path('search/', views.search_farmers, name='search_farmers'),
+    path('farmer/<str:farmer_name>/', views.farmer_details, name='farmer_details'),
+    
+   
 ]
