@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect
 from .models import farmers
 from django.contrib import messages
 from datetime import datetime

@@ -59,7 +59,7 @@
         <td>{{ farmer.date }}</td>
         <td>{{ farmer.owner_name }}</td>
         <td>{{ farmer.farmer_name }}</td>
-        <td>{{ farmer.time }}</td>
+        <td>{{ farmer.time|date:'H:i' }}</td>
         <td>{{ farmer.rate }}</td>
         <td>{{ farmer.total }}</td>
       </tr>
