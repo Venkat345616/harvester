@@ -26,6 +26,7 @@ def farmer(request):
         utime = request.POST['time']
         urate = request.POST['rate']
         umobile_number = request.POST['mobile_number']
+        udisel = request.POST['disel']
 
         if uowner_name == "select":
             messages.info(request, "Please select Owner name")
@@ -50,7 +51,8 @@ def farmer(request):
             time=utime,
             rate=urate,
             total=total,
-            mobile_number=umobile_number
+            mobile_number=umobile_number,
+            disel = udisel
         )
         user.save()
         messages.success(request, "Added successfully")
@@ -86,12 +88,16 @@ def owner_details(request, owner_name):
 
     total_time_minutes = sum([(farmer.time.hour * 60) + farmer.time.minute for farmer in farmer_objects])
     total_rate = sum([float(farmer.total) for farmer in farmer_objects])
+    total_disel = sum([float(farmer.disel) for farmer in farmer_objects])
 
     total_time_hours, total_time_remainder = divmod(total_time_minutes, 60)
     total_time = f"{total_time_hours} hours {total_time_remainder} minutes"
     return render(request, 'owner_details.html', {'farmer_objects': farmer_objects, 'owner_name': owner_name,
         'total_time': total_time,
-        'total_rate': total_rate,})
+        'total_rate': total_rate,
+        'total_disel': total_disel,
+        
+        })
 
 
 def search_farmers(request):

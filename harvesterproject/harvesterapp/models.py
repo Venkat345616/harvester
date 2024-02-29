@@ -12,6 +12,7 @@ class farmers(models.Model):
     rate = models.CharField(max_length=50)
     total = models.CharField(max_length=50)
     mobile_number = models.CharField(max_length=50)
+    disel = models.CharField(max_length=50)
 
 
     class Meta:

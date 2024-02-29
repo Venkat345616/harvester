@@ -44,7 +44,7 @@
   <body>
     <table>
       <tr>
-        <th colspan="6">Owner Details</th>
+        <th colspan="7">Owner Details</th>
       </tr>
       <tr>
         <th>Date</th>
@@ -53,6 +53,7 @@
         <th>Time</th>
         <th>Rate</th>
         <th>Total</th>
+        <th>Disel</th>
       </tr>
       {% for farmer in farmer_objects %}
       <tr>
@@ -62,6 +63,7 @@
         <td>{{ farmer.time|date:'H:i' }}</td>
         <td>{{ farmer.rate }}</td>
         <td>{{ farmer.total }}</td>
+        <td>{{ farmer.disel }}</td>
       </tr>
       {% endfor %}
       <tr>
@@ -71,6 +73,7 @@
         <td>{{ total_time }}</td>
         <td>Total Amount:</td>
         <td>{{ total_rate }}</td>
+        <td>{{ total_disel }}</td>
       </tr>
     </table>
     {% for message in messages %}
